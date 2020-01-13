@@ -1,12 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Search from './components/search'
 
-// eslint-disable-next-line react/prefer-stateless-function
-class App extends Component {
-  render() {
-    return (
-      <div>React App</div>
-    )
-  }
-}
+const App = () => <Search />
 
 export default App
