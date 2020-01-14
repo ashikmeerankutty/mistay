@@ -1,0 +1,140 @@
+.date_picker {
+  flex: 3.5;
+  border-right: 1px solid #22242626;
+  cursor: pointer;
+  .date_wrapper {
+    position: relative;
+    .date_header {
+      padding: 10px 10px 0px 10px;
+      .date_title {
+        display: flex;
+        justify-content: space-between;
+        .date_title_holder {
+          padding: 0px 20px;
+          flex: 2;
+          display: flex;
+          justify-content: space-between;
+          .date_title_text {
+            padding: 20px 10px;
+            font-size: 18px;
+            font-weight: 400;
+            margin: 0;
+            color: #c6c6c6;
+          }
+          .date_input_holder {
+            padding: 15px 0px 0px 10px;
+            .date_input_label {
+              padding-bottom: 2px;
+              color: #c6c6c6;
+              margin: 0;
+            }
+            .date_input {
+              font-size: 14px;
+              border: none;
+              &:focus {
+                outline: none;
+                border: none;
+              }
+              &:active {
+                border: none;
+              }
+            }
+            .date_input::placeholder {
+              color: #c6c6c6;
+            }
+          }
+          .date_icon {
+            padding: 23px 0px;
+          }
+        }
+        .date_icon {
+          padding: 20px 10px;
+        }
+      }
+    }
+    .date_list {
+      position: absolute;
+      background: #fff;
+      left: 0px;
+      right: 0px;
+      .date_list_title {
+        display: flex;
+        justify-content: space-between;
+        padding: 0px 10px;
+        .date_list_heading {
+          color: #c6c6c6;
+          font-size: 15px;
+          font-weight: 400;
+        }
+      }
+      .slider_icons {
+        position: relative;
+        .prev {
+          position: absolute;
+          top: 5px;
+          left: 10px;
+        }
+        .next {
+          position: absolute;
+          top: 5px;
+          right: 10px;
+        }
+        .slider_icon {
+          font-size: 20px;
+          color: $primary-color;
+        }
+        display: felx;
+        justify-content: space-between;
+      }
+      .slider_container {
+        display: flex;
+        overflow-x: auto;
+      }
+    }
+  }
+}
+
+.date_component {
+  min-width: 220px;
+  padding: 0px 5px;
+  .date_component_date_wrapper {
+    .date_component_date {
+      margin: 0;
+      text-align: center;
+      font-weight: 400;
+      font-size: 16px;
+    }
+    .date_component_day {
+      margin: 0;
+      text-align: center;
+      font-weight: 200;
+      font-size: 12px;
+    }
+  }
+  .date_component_time_wrapper {
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-between;
+    .date_component_time {
+      display: flex;
+      height: 60px;
+      width: 60px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      border: 0.25px solid #ede8e8;
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.09);
+      h2 {
+        margin: 0;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.divider {
+  margin-bottom: 30px;
+  width: 1px;
+  flex-shrink: 0;
+  background: radial-gradient(ellipse at 100% 50%, rgb(214, 214, 214) 0%, rgb(255, 255, 255) 100%);
+}
