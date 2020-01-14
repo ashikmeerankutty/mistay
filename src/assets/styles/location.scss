@@ -4,24 +4,52 @@
   cursor: pointer;
   .location_wrapper {
     .location_header {
-      padding: 10px;
+      padding: 10px 10px 0px 10px;
       .location_title {
-        padding: 20px 10px;
         display: flex;
         justify-content: space-between;
         .location_title_text {
+          padding: 20px 10px;
           padding-right: 30px;
           font-size: 18px;
           font-weight: 400;
           margin: 0;
           color: #c6c6c6;
         }
+        .location_input_holder {
+          padding: 15px 0px 0px 10px;
+          .location_input_label {
+            padding-bottom: 2px;
+            color: #c6c6c6;
+            margin: 0;
+          }
+          .location_input {
+            font-size: 14px;
+            border: none;
+            &:focus {
+              outline: none;
+              border: none;
+            }
+            &:active {
+              border: none;
+            }
+          }
+          .location_input::placeholder {
+            color: #c6c6c6;
+          }
+        }
+        .location_icon {
+          padding: 20px 10px;
+        }
       }
     }
     .location_list {
       background: #fff;
-      max-height: 200px;
+      max-height: 250px;
       overflow-y: scroll;
+      .location_span {
+        padding-right: 5px;
+      }
       .location_list_item {
         padding: 0 10px;
         display: flex;
