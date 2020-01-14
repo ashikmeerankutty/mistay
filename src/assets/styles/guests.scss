@@ -34,6 +34,7 @@
       .guest_add_room {
         padding: 10px;
         .guest_add_room_button {
+          cursor: pointer;
           margin-top: 20px;
           width: 100%;
           min-height: 14px;
@@ -44,6 +45,13 @@
           border: 2px solid #ff851b;
           background-color: transparent;
           color: #ff851b;
+          &:hover {
+            background: #ff851b;
+            color: #fff;
+          }
+          &:focus {
+            outline: none;
+          }
         }
       }
       .guest_room {
@@ -54,6 +62,7 @@
           padding-top: 10px;
         }
         .rooms_remove {
+          cursor: pointer;
           flex: 0.5;
         }
         .room_guests {
@@ -70,6 +79,7 @@
         }
         .guests_add,
         .guests_remove {
+          cursor: pointer;
           flex: 1;
         }
       }
