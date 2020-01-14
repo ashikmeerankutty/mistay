@@ -1,8 +1,8 @@
 .guests {
   flex: 2;
   border-right: 1px solid #22242626;
-  cursor: pointer;
   .guest_wrapper {
+    cursor: pointer;
     .guest_header {
       padding: 10px 10px 0px 10px;
       .guest_title {
@@ -27,9 +27,52 @@
       }
     }
     .guest_list {
+      cursor: default;
       background: #fff;
       max-height: 250px;
       overflow-y: scroll;
+      .guest_add_room {
+        padding: 10px;
+        .guest_add_room_button {
+          margin-top: 20px;
+          width: 100%;
+          min-height: 14px;
+          text-align: center;
+          border-radius: 2px;
+          padding: 5px 0px;
+          font-size: 14px;
+          border: 2px solid #ff851b;
+          background-color: transparent;
+          color: #ff851b;
+        }
+      }
+      .guest_room {
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        .guests_icon {
+          padding-top: 10px;
+        }
+        .rooms_remove {
+          flex: 0.5;
+        }
+        .room_guests {
+          flex: 2;
+          p {
+            color: #c6c6c6;
+            font-size: 12px;
+            font-weight: 300;
+            margin: 0;
+          }
+          h5 {
+            margin: 0;
+          }
+        }
+        .guests_add,
+        .guests_remove {
+          flex: 1;
+        }
+      }
     }
   }
 }

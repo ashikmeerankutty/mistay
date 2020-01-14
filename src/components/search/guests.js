@@ -1,17 +1,27 @@
 import React, { Component } from 'react'
 import onClickOutside from 'react-onclickoutside'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMapMarkerAlt, faBed } from '@fortawesome/free-solid-svg-icons'
+import {
+  faBed, faPlusCircle, faMinusCircle, faTimes
+} from '@fortawesome/free-solid-svg-icons'
 
+const defaultRoom = {
+  id: 1,
+  guests: 2
+}
 
 class Guests extends Component {
   constructor(props) {
     super(props)
     this.state = {
       listOpen: false,
-      rooms: 1,
-      guests: 2
+      rooms: [defaultRoom],
+      totalRooms: 1,
+      totalGuests: 2
     }
+  }
+
+  componentDidMount() {
   }
 
   handleClickOutside() {
@@ -19,7 +29,9 @@ class Guests extends Component {
   }
 
   render() {
-    const { rooms, guests, listOpen } = this.state
+    const {
+      rooms, totalRooms, totalGuests, listOpen
+    } = this.state
     return (
       <div className="guest_wrapper">
         <div className="guest_header">
@@ -27,11 +39,11 @@ class Guests extends Component {
             <div className="guest_input_holder">
               <h6 className="guest_input_label">ANY GUESTS</h6>
               <h3 className="guest_count">
-                {rooms}
+                {totalRooms}
                 {' '}
                 Rooms/
                 {' '}
-                {guests}
+                {totalGuests}
                 Guests
               </h3>
             </div>
@@ -42,8 +54,35 @@ class Guests extends Component {
         </div>
         {
           listOpen && (
-            <div className="guest_list" >
-              <button type="button">Add Room</button>
+            <div className="guest_list">
+              <div className="guest_add_room">
+                <button type="button" className="guest_add_room_button">Add Room</button>
+              </div>
+              {rooms.map((room, index) => (
+                <div key={room.id} className="guest_room">
+                  <div className="rooms_remove">
+                    <FontAwesomeIcon className="guests_icon" icon={faTimes} color="#C6C6C6" />
+                  </div>
+                  <div className="room_guests">
+                    <p>
+                      Room
+                      {' '}
+                      {index + 1}
+                    </p>
+                    <h5>
+                    Guests
+                      {' '}
+                      { room.guests }
+                    </h5>
+                  </div>
+                  <div className="guests_add">
+                    <FontAwesomeIcon className="guests_icon" icon={faPlusCircle} color="#C6C6C6" />
+                  </div>
+                  <div className="rooms_remove">
+                    <FontAwesomeIcon className="guests_icon" icon={faMinusCircle} color="#C6C6C6" />
+                  </div>
+                </div>
+              ))}
             </div>
           )
         }
