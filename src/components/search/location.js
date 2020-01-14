@@ -58,7 +58,6 @@ class Location extends Component {
               <div className="location_list_item near_me">
                 <p>
                   <span className="location_span">
-                    {' '}
                     <FontAwesomeIcon icon={faLocationArrow} />
                   </span>
                   Hotels Near Me

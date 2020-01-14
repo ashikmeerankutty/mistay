@@ -37,7 +37,7 @@ class SearchBar extends Component {
           <input type="text" placeholder="Guests" />
         </div>
         <div className="search_button">
-          <button type="button">FIND HOURLY HOTELS</button>
+          <h2>FIND HOURLY HOTELS</h2>
         </div>
       </div>
     )
