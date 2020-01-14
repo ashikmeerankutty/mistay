@@ -1,0 +1,35 @@
+.guests {
+  flex: 2;
+  border-right: 1px solid #22242626;
+  cursor: pointer;
+  .guest_wrapper {
+    .guest_header {
+      padding: 10px 10px 0px 10px;
+      .guest_title {
+        display: flex;
+        justify-content: space-between;
+        .guest_input_holder {
+          padding: 15px 0px 0px 10px;
+          .guest_input_label {
+            padding-bottom: 2px;
+            color: #c6c6c6;
+            margin: 0;
+          }
+          .guest_count {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 400;
+          }
+        }
+        .guest_icon {
+          padding: 20px 10px;
+        }
+      }
+    }
+    .guest_list {
+      background: #fff;
+      max-height: 250px;
+      overflow-y: scroll;
+    }
+  }
+}

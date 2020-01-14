@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { DateRangePicker } from 'react-dates'
 import Location from './location'
+import Guests from './guests'
 
 
 class SearchBar extends Component {
@@ -34,7 +35,7 @@ class SearchBar extends Component {
           />
         </div>
         <div className="guests">
-          <input type="text" placeholder="Guests" />
+          <Guests />
         </div>
         <div className="search_button">
           <h2>FIND HOURLY HOTELS</h2>
