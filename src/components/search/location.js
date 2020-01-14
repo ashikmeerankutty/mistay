@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-autofocus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component } from 'react'
 import onClickOutside from 'react-onclickoutside'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -27,7 +30,6 @@ class Location extends Component {
   }
 
   handleSearchValue(e) {
-    console.log(e.target.value, this.state.selectedLocation)
     this.setState({ selectedLocation: e.target.value })
   }
 
