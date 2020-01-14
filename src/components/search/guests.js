@@ -63,10 +63,10 @@ class Guests extends Component {
     } = this.state
     rooms.push({
       id: roomId + 1,
-      guests: 2
+      guests: 1
     })
     const roomsCount = totalRooms + 1
-    const guestsCount = totalGuests + 2
+    const guestsCount = totalGuests + 1
     this.setState({
       rooms, roomId: roomId + 1, totalRooms: roomsCount, totalGuests: guestsCount
     })
@@ -90,7 +90,7 @@ class Guests extends Component {
         <div className="guest_header">
           <div className="guest_title" onClick={() => this.setState({ listOpen: true })}>
             <div className="guest_input_holder">
-              <h6 className="guest_input_label">ANY GUESTS</h6>
+              <h6 className="guest_input_label">ANY GUESTS?</h6>
               <h3 className="guest_count">
                 {totalRooms}
                 {' '}
@@ -113,8 +113,9 @@ class Guests extends Component {
               </div>
               {rooms.map((room, index) => (
                 <div key={room.id} className="guest_room">
-                  <div className="rooms_remove" onClick={() => { this.removeRoom(room.id) }}>
-                    <FontAwesomeIcon className="guests_icon" icon={faTimes} color="#C6C6C6" />
+                  <div className="rooms_remove">
+                    {totalRooms > 1 && (<FontAwesomeIcon onClick={() => { this.removeRoom(room.id) }} className="guests_icon times_icon" icon={faTimes} color="grey" />
+                    )}
                   </div>
                   <div className="room_guests">
                     <p>
@@ -128,11 +129,11 @@ class Guests extends Component {
                       Guests
                     </h5>
                   </div>
-                  <div className="guests_add" onClick={() => { this.incrementGuests(room.id) }}>
-                    <FontAwesomeIcon className="guests_icon" icon={faPlusCircle} color="#C6C6C6" />
+                  <div className="guests_add">
+                    <FontAwesomeIcon onClick={() => { this.incrementGuests(room.id) }} className="guests_icon" icon={faPlusCircle} color="grey" />
                   </div>
-                  <div className="rooms_remove" onClick={() => { this.decrementGuests(room.id) }}>
-                    <FontAwesomeIcon className="guests_icon" icon={faMinusCircle} color="#C6C6C6" />
+                  <div className="rooms_remove">
+                    <FontAwesomeIcon onClick={() => { this.decrementGuests(room.id) }} className="guests_icon" icon={faMinusCircle} color="grey" />
                   </div>
                 </div>
               ))}

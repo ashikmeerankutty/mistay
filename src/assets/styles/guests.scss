@@ -58,11 +58,15 @@
         padding: 10px 20px;
         display: flex;
         justify-content: space-between;
+        border-bottom: 1px solid #22242626;
         .guests_icon {
+          cursor: pointer;
           padding-top: 10px;
         }
+        .times_icon {
+          font-size: 10px;
+        }
         .rooms_remove {
-          cursor: pointer;
           flex: 0.5;
         }
         .room_guests {
@@ -79,7 +83,6 @@
         }
         .guests_add,
         .guests_remove {
-          cursor: pointer;
           flex: 1;
         }
       }
