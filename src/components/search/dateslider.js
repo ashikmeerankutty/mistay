@@ -5,6 +5,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import DateComponent from './datecomponent'
 import scrollSlider from '../../utils/scroll'
+import generateDateTimeList from '../../utils/dates'
+
 
 const Divider = () => <div className="divider" />
 
@@ -12,11 +14,17 @@ class DateSlider extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentIndex: 0
+      dateTimeList: [],
+      lastDate: null
     }
     this.scrollRef = React.createRef()
     this.handlePrev = this.handlePrev.bind(this)
     this.handleNext = this.handleNext.bind(this)
+  }
+
+  componentDidMount() {
+    const dateTimeList = generateDateTimeList(new Date(), 10)
+    this.setState({ dateTimeList, lastDate: dateTimeList[9] })
   }
 
   handlePrev() {
@@ -28,6 +36,7 @@ class DateSlider extends Component {
   }
 
   render() {
+    const { dateTimeList } = this.state
     return (
       <div>
         <div className="slider_icons">
@@ -39,18 +48,14 @@ class DateSlider extends Component {
           </div>
         </div>
         <div ref={this.scrollRef} className="slider_container">
-          <DateComponent />
-          <Divider />
-          <DateComponent />
-          <Divider />
-          <DateComponent />
-          <Divider />
-          <DateComponent />
-          <Divider />
-          <DateComponent />
-          <Divider />
-          <DateComponent />
-          <Divider />
+          {
+            dateTimeList.map((date) => (
+              <div className="slider_element_holder">
+                <DateComponent key={date} date={date} />
+                <Divider />
+              </div>
+            ))
+          }
         </div>
       </div>
     )
