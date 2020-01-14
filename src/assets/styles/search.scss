@@ -1,15 +1,22 @@
 .search_bar {
   display: flex;
-  .location {
-    padding: 20px;
+  justify-content: space-between;
+  background: #fff;
+  margin: 0 80px;
+  border-radius: 10px;
+  height: 80px;
+  box-shadow: 2px 2px 30px 1px rgba(208, 208, 208, 0.31);
+  .date_picker {
+    flex: 3.5;
+    border-right: 1px solid #22242626;
   }
   .guests {
+    flex: 2;
     padding: 20px;
+    border-right: 1px solid #22242626;
   }
   .search_button {
-    padding: 20px;
-  }
-  .date_picker {
+    flex:2;
     padding: 20px;
   }
 }

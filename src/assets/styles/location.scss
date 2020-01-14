@@ -1,0 +1,44 @@
+.location {
+  flex: 2;
+  border-right: 1px solid #22242626;
+  cursor: pointer;
+  .location_wrapper {
+    .location_header {
+      padding: 10px;
+      .location_title {
+        padding: 20px 10px;
+        display: flex;
+        justify-content: space-between;
+        .location_title_text {
+          padding-right: 30px;
+          font-size: 18px;
+          font-weight: 400;
+          margin: 0;
+          color: #c6c6c6;
+        }
+      }
+    }
+    .location_list {
+      background: #fff;
+      max-height: 200px;
+      overflow-y: scroll;
+      .location_list_item {
+        padding: 0 10px;
+        display: flex;
+        justify-content: space-between;
+        .location_place {
+          font-size: 14px;
+          margin: 10px 0px;
+        }
+        .location_type {
+          margin: 10px 0px;
+          color: grey;
+          font-size: 12px;
+        }
+        &:hover {
+          background: #efefef;
+        }
+      }
+    }
+  }
+}

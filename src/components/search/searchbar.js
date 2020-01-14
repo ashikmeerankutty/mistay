@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { DateRangePicker } from 'react-dates'
+import Location from './location'
 
 
 class SearchBar extends Component {
@@ -17,7 +18,7 @@ class SearchBar extends Component {
     return (
       <div className="search_bar">
         <div className="location">
-          <input type="text" placeholder="Where To" />
+          <Location />
         </div>
         <div className="date_picker">
           <DateRangePicker
