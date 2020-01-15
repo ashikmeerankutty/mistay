@@ -50,8 +50,8 @@ class DateSlider extends Component {
         <div ref={this.scrollRef} className="slider_container">
           {
             dateTimeList.map((date) => (
-              <div className="slider_element_holder">
-                <DateComponent key={date} date={date} />
+              <div key={date} className="slider_element_holder">
+                <DateComponent date={date} />
                 <Divider />
               </div>
             ))

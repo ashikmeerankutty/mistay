@@ -40,15 +40,15 @@ class DateComponent extends Component {
         { time.checkInDate === null
           ? (
             <div className="date_component_time_wrapper">
-              <div className="date_component_time" onClick={() => ((hours < 8) ? setCheckInTime(date, 8) : null)}><h2>8AM</h2></div>
-              <div className="date_component_time" onClick={() => ((hours < 12) ? setCheckInTime(date, 12) : null)}><h2>12PM</h2></div>
-              <div className="date_component_time" onClick={() => ((hours < 20) ? setCheckInTime(date, 20) : null)}><h2>8PM</h2></div>
+              <div className={'date_component_time ' + ((hours >= 8) ? 'disabled' : '')} onClick={() => ((hours < 8) ? setCheckInTime(date, 8) : null)}><h2>8AM</h2></div>
+              <div className={'date_component_time ' + ((hours >= 12) ? 'disabled' : '')} onClick={() => ((hours < 12) ? setCheckInTime(date, 12) : null)}><h2>12PM</h2></div>
+              <div className={'date_component_time ' + ((hours >= 20) ? 'disabled' : '')} onClick={() => ((hours < 20) ? setCheckInTime(date, 20) : null)}><h2>8PM</h2></div>
             </div>
           ) : (
             <div className="date_component_time_wrapper">
-              <div className="date_component_time" onClick={() => setCheckOutTime(date, 7)}><h2>7AM</h2></div>
-              <div className="date_component_time" onClick={() => setCheckOutTime(date, 11)}><h2>11AM</h2></div>
-              <div className="date_component_time" onClick={() => setCheckOutTime(date, 19)}><h2>7PM</h2></div>
+              <div className={'date_component_time ' + ((date <= time.checkInDate && time.checkInTime >= 7) ? 'disabled' : '')} onClick={() => setCheckOutTime(date, 7)}><h2>7AM</h2></div>
+              <div className={'date_component_time ' + ((date <= time.checkInDate && time.checkInTime >= 11) ? 'disabled' : '')} onClick={() => setCheckOutTime(date, 11)}><h2>11AM</h2></div>
+              <div className={'date_component_time ' + ((date <= time.checkInDate && time.checkInTime >= 19) ? 'disabled' : '')} onClick={() => setCheckOutTime(date, 19)}><h2>7PM</h2></div>
             </div>
           )
         }

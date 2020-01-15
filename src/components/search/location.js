@@ -7,9 +7,7 @@ import { connect } from 'react-redux'
 import onClickOutside from 'react-onclickoutside'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt, faLocationArrow } from '@fortawesome/free-solid-svg-icons'
-import {
-  incrementRoomCount, incrementGuestCount, decrementGuestCount, decrementRoomCount, getSelectedLocation
-} from '../../actions/search'
+import { getSelectedLocation } from '../../actions/search'
 
 
 class Location extends Component {
