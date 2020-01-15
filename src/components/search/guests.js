@@ -1,11 +1,17 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import onClickOutside from 'react-onclickoutside'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBed, faPlusCircle, faMinusCircle, faTimes
 } from '@fortawesome/free-solid-svg-icons'
+
+import {
+  incrementRoomCount, incrementGuestCount, decrementGuestCount, decrementRoomCount
+} from '../../actions/search'
 
 const defaultRoom = {
   id: 1,
@@ -19,8 +25,6 @@ class Guests extends Component {
       listOpen: false,
       roomId: 1,
       rooms: [defaultRoom],
-      totalRooms: 1,
-      totalGuests: 2
     }
     this.handleClickOutside = this.handleClickOutside.bind(this)
     this.incrementGuests = this.incrementGuests.bind(this)
@@ -34,54 +38,58 @@ class Guests extends Component {
   }
 
   incrementGuests(id) {
-    const { rooms, totalGuests } = this.state
-    let guestsCount = totalGuests
+    const { incrementGuests } = this.props
+    const { rooms } = this.state
     const index = rooms.findIndex((room) => room.id === id)
     if (rooms[index].guests < 2) {
       rooms[index].guests += 1
-      guestsCount += 1
+      incrementGuests(1)
     }
-    this.setState({ rooms, totalGuests: guestsCount })
+    this.setState({ rooms })
   }
 
   decrementGuests(id) {
-    const { rooms, totalGuests } = this.state
-    let guestsCount = totalGuests
+    const { decrementGuests } = this.props
+    const { rooms } = this.state
     const index = rooms.findIndex((room) => room.id === id)
     if (rooms[index].guests > 1) {
       rooms[index].guests -= 1
-      guestsCount -= 1
+      decrementGuests(1)
     }
-    this.setState({ rooms, totalGuests: guestsCount })
+    this.setState({ rooms })
   }
 
   addRoom() {
+    const { incrementGuests, incrementRooms } = this.props
     const {
-      rooms, roomId, totalRooms, totalGuests
+      rooms, roomId
     } = this.state
     rooms.push({
       id: roomId + 1,
       guests: 1
     })
-    const roomsCount = totalRooms + 1
-    const guestsCount = totalGuests + 1
+    incrementRooms(1)
+    incrementGuests(1)
     this.setState({
-      rooms, roomId: roomId + 1, totalRooms: roomsCount, totalGuests: guestsCount
+      rooms, roomId: roomId + 1
     })
   }
 
   removeRoom(id) {
-    const { rooms, totalRooms, totalGuests } = this.state
+    const { decrementGuests, decrementRooms } = this.props
+    const { rooms } = this.state
     const index = rooms.findIndex((room) => room.id === id)
     const newRooms = rooms.filter((room) => room.id !== id)
-    const roomsCount = totalRooms - 1
-    const guestsCount = totalGuests - rooms[index].guests
-    this.setState({ rooms: newRooms, totalRooms: roomsCount, totalGuests: guestsCount })
+    decrementRooms(1)
+    decrementGuests(rooms[index].guests)
+    this.setState({ rooms: newRooms })
   }
 
   render() {
+    const { time } = this.props
+    const { totalGuests, totalRooms } = time
     const {
-      rooms, totalRooms, totalGuests, listOpen
+      rooms, listOpen
     } = this.state
     return (
       <div className="guest_wrapper">
@@ -144,4 +152,26 @@ class Guests extends Component {
 }
 
 
-export default onClickOutside(Guests)
+const mapStateToProps = (state) => ({
+  time: state.search
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  incrementRooms: (count) => {
+    dispatch(incrementRoomCount(count))
+  },
+  incrementGuests: (count) => {
+    dispatch(incrementGuestCount(count))
+  },
+  decrementGuests: (count) => {
+    dispatch(decrementGuestCount(count))
+  },
+  decrementRooms: (count) => {
+    dispatch(decrementRoomCount(count))
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(onClickOutside(Guests))

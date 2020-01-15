@@ -1,11 +1,16 @@
-import { SET_CHECKIN_TIME, SET_CHECKOUT_TIME, SET_SELECTED_LOCATION } from '../actions/actionTypes'
+import {
+  SET_CHECKIN_TIME, SET_CHECKOUT_TIME, SET_SELECTED_LOCATION,
+  INCREMENT_TOTAL_GUESTS, INCREMENT_TOTAL_ROOMS, DECREMENT_TOTAL_GUESTS, DECREMENT_TOTAL_ROOMS
+} from '../actions/actionTypes'
 
 const initialState = {
   checkInDate: null,
   checkInTime: null,
   checkOutDate: null,
   checkOutTime: null,
-  selectedLocation: ''
+  selectedLocation: '',
+  totalRooms: 1,
+  totalGuests: 2
 }
 
 const search = (state = initialState, action) => {
@@ -26,6 +31,26 @@ const search = (state = initialState, action) => {
     return {
       ...state,
       selectedLocation: action.location
+    }
+  case INCREMENT_TOTAL_GUESTS:
+    return {
+      ...state,
+      totalGuests: state.totalGuests + action.count
+    }
+  case DECREMENT_TOTAL_GUESTS:
+    return {
+      ...state,
+      totalGuests: state.totalGuests - action.count
+    }
+  case INCREMENT_TOTAL_ROOMS:
+    return {
+      ...state,
+      totalRooms: state.totalRooms + action.count
+    }
+  case DECREMENT_TOTAL_ROOMS:
+    return {
+      ...state,
+      totalRooms: state.totalRooms - action.count
     }
   default:
     return state
