@@ -42,6 +42,10 @@ const decrementGuest = (count) => ({
   count
 })
 
+const setSlot = () => ({
+  type: INCREMENT_SLOT
+})
+
 export const getCheckinTime = (date, time, slot) => (dispatch) => {
   if (date !== null) date.setHours(time, 0, 0, 0)
   dispatch(setCheckinTime(date, time, slot))
@@ -70,4 +74,8 @@ export const incrementGuestCount = (count) => (dispatch) => {
 
 export const decrementGuestCount = (count) => (dispatch) => {
   dispatch(decrementGuest(count))
+}
+
+export const incrementSlot = () => (dispatch) => {
+  dispatch(setSlot())
 }

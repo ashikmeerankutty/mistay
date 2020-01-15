@@ -188,5 +188,10 @@
     .disabled {
       color: #9c9c9c;
     }
+    .active {
+      background: linear-gradient(to right, #537def, #7d68ec);
+      color: #fff;
+      transition: 0.5s ease;
+    }
   }
 }

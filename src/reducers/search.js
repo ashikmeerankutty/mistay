@@ -11,7 +11,8 @@ const initialState = {
   selectedLocation: '',
   totalRooms: 1,
   totalGuests: 2,
-  slot: null
+  checkInslot: null,
+  checkOutslot: null
 }
 
 const search = (state = initialState, action) => {
@@ -21,14 +22,14 @@ const search = (state = initialState, action) => {
       ...state,
       checkInDate: action.date,
       checkInTime: action.time,
-      slot: action.slot
+      checkInslot: action.slot
     }
   case SET_CHECKOUT_TIME:
     return {
       ...state,
       checkOutDate: action.date,
       checkOutTime: action.time,
-      slot: action.slot
+      checkOutslot: action.slot
     }
   case SET_SELECTED_LOCATION:
     return {

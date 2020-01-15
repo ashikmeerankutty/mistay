@@ -27,11 +27,11 @@ class SearchBar extends Component {
   onSubmit() {
     const { time } = this.props
     const {
-      checkInTime, slot,  checkOutTime, checkInDate,
-      checkOutDate, selectedLocation, totalRooms, totalGuests
+      checkInslot, checkInDate,
+      selectedLocation, totalRooms, totalGuests
     } = time
     console.log({
-      CheckInDate: this.parseDate(checkInDate), checkInSlot: slot, city: selectedLocation, guestCount: totalGuests, roomCount: totalRooms
+      CheckInDate: this.parseDate(checkInDate), checkInSlot: checkInslot, city: selectedLocation, guestCount: totalGuests, roomCount: totalRooms
     })
   }
 
