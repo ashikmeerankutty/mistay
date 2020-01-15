@@ -5,7 +5,7 @@
   .date_wrapper {
     position: relative;
     .date_header {
-      padding: 10px 10px 0px 10px;
+      padding: 0px 10px 0px 10px;
       .date_title {
         display: flex;
         justify-content: space-between;
@@ -15,40 +15,53 @@
           display: flex;
           justify-content: space-between;
           .date_title_text {
-            padding: 20px 10px;
+            padding: 30px 10px;
             font-size: 18px;
             font-weight: 400;
             margin: 0;
             color: #c6c6c6;
           }
+        }
+        .date_input_wrapper {
+          flex: 2;
+          padding: 0px 20px;
+          display: flex;
+          justify-content: space-around;
           .date_input_holder {
-            padding: 15px 0px 0px 10px;
+            padding-top: 15px;
             .date_input_label {
               padding-bottom: 2px;
               color: #c6c6c6;
               margin: 0;
             }
-            .date_input {
+            .date_u {
+              display: flex;
+              .date_v {
+                padding-right: 2px;
+                padding-top: 2px;
+                font-weight: bold;
+                font-size: 18px;
+              }
+              .date_w {
+                padding-top: 5px;
+                font-size: 14px;
+              }
+              .date_x {
+                padding-top: 5px;
+                font-size: 14px;
+              }
+            }
+            .date_y {
               font-size: 14px;
-              border: none;
-              &:focus {
-                outline: none;
-                border: none;
-              }
-              &:active {
-                border: none;
-              }
+              font-weight: 300;
             }
-            .date_input::placeholder {
-              color: #c6c6c6;
-            }
-          }
-          .date_icon {
-            padding: 23px 0px;
           }
         }
         .date_icon {
-          padding: 20px 10px;
+          padding: 35px 0px;
+        }
+        .date_icon {
+          padding: 30px 10px;
         }
       }
     }
@@ -65,6 +78,36 @@
           color: #c6c6c6;
           font-size: 15px;
           font-weight: 400;
+        }
+        .active {
+          .check-in {
+            color: #557cef;
+            position: relative;
+            &::after {
+              position: absolute;
+              content: "";
+              background: #557cef;
+              display: inline-block;
+              left: 0;
+              bottom: -8px;
+              height: 3px;
+              right: 20%;
+            }
+          }
+          .check-out {
+            color: #557cef;
+            position: relative;
+            &::after {
+              position: absolute;
+              content: "";
+              background: #557cef;
+              display: inline-block;
+              right: 0;
+              bottom: -8px;
+              height: 3px;
+              left: 20%;
+            }
+          }
         }
       }
       .slider_icons {
@@ -141,6 +184,9 @@
         margin: 0;
         font-size: 14px;
       }
+    }
+    .disabled {
+      color: #9c9c9c;
     }
   }
 }
