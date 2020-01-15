@@ -28,8 +28,6 @@ class Guests extends Component {
     this.addRoom = this.addRoom.bind(this)
   }
 
-  componentDidMount() {
-  }
 
   handleClickOutside() {
     this.setState({ listOpen: false })

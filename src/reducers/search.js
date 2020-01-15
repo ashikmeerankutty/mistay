@@ -1,10 +1,11 @@
-import { SET_CHECKIN_TIME, SET_CHECKOUT_TIME } from '../actions/actionTypes'
+import { SET_CHECKIN_TIME, SET_CHECKOUT_TIME, SET_SELECTED_LOCATION } from '../actions/actionTypes'
 
 const initialState = {
   checkInDate: null,
   checkInTime: null,
   checkOutDate: null,
-  checkOutTime: null
+  checkOutTime: null,
+  selectedLocation: ''
 }
 
 const search = (state = initialState, action) => {
@@ -20,6 +21,11 @@ const search = (state = initialState, action) => {
       ...state,
       checkOutDate: action.date,
       checkOutTime: action.time
+    }
+  case SET_SELECTED_LOCATION:
+    return {
+      ...state,
+      selectedLocation: action.location
     }
   default:
     return state
