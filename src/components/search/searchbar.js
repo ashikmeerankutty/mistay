@@ -24,23 +24,14 @@ class SearchBar extends Component {
     return `${dd}/${mm}/${yyyy}`
   }
 
-  getSlot(checkInTime) {
-    switch (checkInTime) {
-    case 8: return 1
-    case 12: return 2
-    case 20: return 3
-    default: return 0
-    }
-  }
-
   onSubmit() {
     const { time } = this.props
     const {
-      checkInTime, checkOutTime, checkInDate,
+      checkInTime, slot,  checkOutTime, checkInDate,
       checkOutDate, selectedLocation, totalRooms, totalGuests
     } = time
     console.log({
-      CheckInDate: this.parseDate(checkInDate), checkInSlot: this.getSlot(checkInTime), city: selectedLocation, guestCount: totalGuests, roomCount: totalRooms
+      CheckInDate: this.parseDate(checkInDate), checkInSlot: slot, city: selectedLocation, guestCount: totalGuests, roomCount: totalRooms
     })
   }
 

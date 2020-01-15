@@ -3,16 +3,18 @@ import {
   INCREMENT_TOTAL_GUESTS, INCREMENT_TOTAL_ROOMS, DECREMENT_TOTAL_GUESTS, DECREMENT_TOTAL_ROOMS
 } from './actionTypes'
 
-const setCheckinTime = (date, time) => ({
+const setCheckinTime = (date, time, slot) => ({
   type: SET_CHECKIN_TIME,
   date,
-  time
+  time,
+  slot
 })
 
-const setCheckoutTime = (date, time) => ({
+const setCheckoutTime = (date, time, slot) => ({
   type: SET_CHECKOUT_TIME,
   date,
-  time
+  time,
+  slot
 })
 
 const setSelectedLocation = (location) => ({
@@ -40,14 +42,14 @@ const decrementGuest = (count) => ({
   count
 })
 
-export const getCheckinTime = (date, time) => (dispatch) => {
+export const getCheckinTime = (date, time, slot) => (dispatch) => {
   if (date !== null) date.setHours(time, 0, 0, 0)
-  dispatch(setCheckinTime(date, time))
+  dispatch(setCheckinTime(date, time, slot))
 }
 
-export const getCheckoutTime = (date, time) => (dispatch) => {
+export const getCheckoutTime = (date, time, slot) => (dispatch) => {
   if (date !== null) date.setHours(time, 0, 0, 0)
-  dispatch(setCheckoutTime(date, time))
+  dispatch(setCheckoutTime(date, time, slot))
 }
 
 export const getSelectedLocation = (location) => (dispatch) => {

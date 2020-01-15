@@ -17,14 +17,14 @@ class DateComponent extends Component {
     }
   }
 
-  setTime(date, timeValue) {
+  setTime(date, timeValue, slot) {
     const {
       time, setCheckOutTime, setCheckInTime
     } = this.props
     if (time.checkOutTime !== null) {
       setCheckInTime(null, null)
       setCheckOutTime(null, null)
-    } else { setCheckOutTime(date, timeValue) }
+    } else { setCheckOutTime(date, timeValue, slot) }
   }
 
   isCheckoutDisabled(timeValue) {
@@ -55,6 +55,10 @@ class DateComponent extends Component {
     return false
   }
 
+  ischeckInActive(timeValue) {
+    return true
+  }
+
   render() {
     const {
       setCheckOutTime, setCheckInTime, time, date
@@ -79,15 +83,15 @@ class DateComponent extends Component {
         { time.checkInDate === null
           ? (
             <div className="date_component_time_wrapper">
-              <div className={'date_component_time ' + (this.isCheckinDisabled(8) ? 'disabled' : '')} onClick={() => ((hours < 8) ? setCheckInTime(date, 8) : null)}><h2>8AM</h2></div>
-              <div className={'date_component_time ' + (this.isCheckinDisabled(12) ? 'disabled' : '')} onClick={() => ((hours < 12) ? setCheckInTime(date, 12) : null)}><h2>12PM</h2></div>
-              <div className={'date_component_time ' + (this.isCheckinDisabled(20) ? 'disabled' : '')} onClick={() => ((hours < 20) ? setCheckInTime(date, 20) : null)}><h2>8PM</h2></div>
+              <div className={'date_component_time ' + (this.isCheckinDisabled(8) ? 'disabled ' : '') + (this.ischeckInActive(8) ? 'active' : '')} onClick={() => (!this.isCheckinDisabled(8) ? setCheckInTime(date, 8, 1) : null)}><h2>8AM</h2></div>
+              <div className={'date_component_time ' + (this.isCheckinDisabled(12) ? 'disabled' : '')} onClick={() => (!this.isCheckinDisabled(12) ? setCheckInTime(date, 12, 2) : null)}><h2>12PM</h2></div>
+              <div className={'date_component_time ' + (this.isCheckinDisabled(20) ? 'disabled' : '')} onClick={() => (!this.isCheckinDisabled(20) ? setCheckInTime(date, 20, 3) : null)}><h2>8PM</h2></div>
             </div>
           ) : (
             <div className="date_component_time_wrapper">
-              <div className={'date_component_time ' + ((this.isCheckoutDisabled(7)) ? 'disabled' : '')} onClick={() => (((!this.isCheckoutDisabled(7)) ? this.setTime(date, 7) : null))}><h2>7AM</h2></div>
-              <div className={'date_component_time ' + ((this.isCheckoutDisabled(11)) ? 'disabled' : '')} onClick={() => (((!this.isCheckoutDisabled(11)) ? this.setTime(date, 11) : null))}><h2>11AM</h2></div>
-              <div className={'date_component_time ' + ((this.isCheckoutDisabled(19)) ? 'disabled' : '')} onClick={() => (((!this.isCheckoutDisabled(19)) ? this.setTime(date, 19) : null))}><h2>7PM</h2></div>
+              <div className={'date_component_time ' + ((this.isCheckoutDisabled(7)) ? 'disabled' : '')} onClick={() => (((!this.isCheckoutDisabled(7)) ? this.setTime(date, 7, 1) : null))}><h2>7AM</h2></div>
+              <div className={'date_component_time ' + ((this.isCheckoutDisabled(11)) ? 'disabled' : '')} onClick={() => (((!this.isCheckoutDisabled(11)) ? this.setTime(date, 11, 2) : null))}><h2>11AM</h2></div>
+              <div className={'date_component_time ' + ((this.isCheckoutDisabled(19)) ? 'disabled' : '')} onClick={() => (((!this.isCheckoutDisabled(19)) ? this.setTime(date, 19, 3) : null))}><h2>7PM</h2></div>
             </div>
           )
         }
@@ -101,11 +105,11 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setCheckInTime: (date, time) => {
-    dispatch(getCheckinTime(date, time))
+  setCheckInTime: (date, time, slot) => {
+    dispatch(getCheckinTime(date, time, slot))
   },
-  setCheckOutTime: (date, time) => {
-    dispatch(getCheckoutTime(date, time))
+  setCheckOutTime: (date, time, slot) => {
+    dispatch(getCheckoutTime(date, time, slot))
   }
 })
 
