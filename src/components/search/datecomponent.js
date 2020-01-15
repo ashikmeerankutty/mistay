@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -14,6 +15,44 @@ class DateComponent extends Component {
     super(props)
     this.state = {
     }
+  }
+
+  setTime(date, timeValue) {
+    const {
+      time, setCheckOutTime, setCheckInTime
+    } = this.props
+    if (time.checkOutTime !== null) {
+      setCheckInTime(null, null)
+      setCheckOutTime(null, null)
+    } else { setCheckOutTime(date, timeValue) }
+  }
+
+  isCheckoutDisabled(timeValue) {
+    const {
+      time, date
+    } = this.props
+    if (date < time.checkInDate) return true
+    if (date === time.checkInDate && time.checkInTime > timeValue) return true
+    return false
+  }
+
+  parseDate(timestamp) {
+    const date = new Date(timestamp)
+    const dd = `${date.getDate() < 10 ? '0' : ''}${date.getDate()}`
+    const mm = `${date.getMonth() + 1 ? '0' : ''}${date.getMonth() + 1}`
+    const yyyy = date.getFullYear()
+
+    return `${dd}/${mm}/${yyyy}`
+  }
+
+  isCheckinDisabled(timeValue) {
+    const {
+      date
+    } = this.props
+    const hours = date.getHours()
+    const datex = new Date()
+    if (this.parseDate(date) === this.parseDate(datex) && hours > timeValue) return true
+    return false
   }
 
   render() {
@@ -40,15 +79,15 @@ class DateComponent extends Component {
         { time.checkInDate === null
           ? (
             <div className="date_component_time_wrapper">
-              <div className={'date_component_time ' + ((hours >= 8) ? 'disabled' : '')} onClick={() => ((hours < 8) ? setCheckInTime(date, 8) : null)}><h2>8AM</h2></div>
-              <div className={'date_component_time ' + ((hours >= 12) ? 'disabled' : '')} onClick={() => ((hours < 12) ? setCheckInTime(date, 12) : null)}><h2>12PM</h2></div>
-              <div className={'date_component_time ' + ((hours >= 20) ? 'disabled' : '')} onClick={() => ((hours < 20) ? setCheckInTime(date, 20) : null)}><h2>8PM</h2></div>
+              <div className={'date_component_time ' + (this.isCheckinDisabled(8) ? 'disabled' : '')} onClick={() => ((hours < 8) ? setCheckInTime(date, 8) : null)}><h2>8AM</h2></div>
+              <div className={'date_component_time ' + (this.isCheckinDisabled(12) ? 'disabled' : '')} onClick={() => ((hours < 12) ? setCheckInTime(date, 12) : null)}><h2>12PM</h2></div>
+              <div className={'date_component_time ' + (this.isCheckinDisabled(20) ? 'disabled' : '')} onClick={() => ((hours < 20) ? setCheckInTime(date, 20) : null)}><h2>8PM</h2></div>
             </div>
           ) : (
             <div className="date_component_time_wrapper">
-              <div className={'date_component_time ' + ((date <= time.checkInDate && time.checkInTime >= 7) ? 'disabled' : '')} onClick={() => setCheckOutTime(date, 7)}><h2>7AM</h2></div>
-              <div className={'date_component_time ' + ((date <= time.checkInDate && time.checkInTime >= 11) ? 'disabled' : '')} onClick={() => setCheckOutTime(date, 11)}><h2>11AM</h2></div>
-              <div className={'date_component_time ' + ((date <= time.checkInDate && time.checkInTime >= 19) ? 'disabled' : '')} onClick={() => setCheckOutTime(date, 19)}><h2>7PM</h2></div>
+              <div className={'date_component_time ' + ((this.isCheckoutDisabled(7)) ? 'disabled' : '')} onClick={() => (((!this.isCheckoutDisabled(7)) ? this.setTime(date, 7) : null))}><h2>7AM</h2></div>
+              <div className={'date_component_time ' + ((this.isCheckoutDisabled(11)) ? 'disabled' : '')} onClick={() => (((!this.isCheckoutDisabled(11)) ? this.setTime(date, 11) : null))}><h2>11AM</h2></div>
+              <div className={'date_component_time ' + ((this.isCheckoutDisabled(19)) ? 'disabled' : '')} onClick={() => (((!this.isCheckoutDisabled(19)) ? this.setTime(date, 19) : null))}><h2>7PM</h2></div>
             </div>
           )
         }

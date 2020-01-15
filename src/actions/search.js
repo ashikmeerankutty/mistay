@@ -41,12 +41,12 @@ const decrementGuest = (count) => ({
 })
 
 export const getCheckinTime = (date, time) => (dispatch) => {
-  date.setHours(time, 0, 0, 0)
+  if (date !== null) date.setHours(time, 0, 0, 0)
   dispatch(setCheckinTime(date, time))
 }
 
 export const getCheckoutTime = (date, time) => (dispatch) => {
-  date.setHours(time, 0, 0, 0)
+  if (date !== null) date.setHours(time, 0, 0, 0)
   dispatch(setCheckoutTime(date, time))
 }
 
