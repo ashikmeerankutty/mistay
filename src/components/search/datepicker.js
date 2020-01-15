@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import onClickOutside from 'react-onclickoutside'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faCalendar, faChevronRight
+  faCalendarAlt, faChevronRight
 } from '@fortawesome/free-solid-svg-icons'
 import DateSlider from './dateslider'
 
@@ -93,7 +93,7 @@ class DatePicker extends Component {
               </div>
             )}
             <div className="date_icon">
-              <FontAwesomeIcon icon={faCalendar} color="#C6C6C6" />
+              <FontAwesomeIcon icon={faCalendarAlt} color="#C6C6C6" />
             </div>
           </div>
         </div>
